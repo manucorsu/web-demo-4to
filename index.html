@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoticfy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Spoticfy</h1>
+    </header>
+    <h1 class> Sin Formato </h1>
+    <h1 class = "titulo"> con padding </h1>
+    <h1 class = "caja"> margin 100 </h1>
+    <div class = "flex-container"> 
+        <div> div1 </div>
+        <div> div2 </div>
+        <div> div3 </div>
+    </div> 
+
+    <img src="artist.jpg" alt="Logo del álbum">
+    <div class = "flex-container"> 
+        <button id="traer"> TRAER </button>
+        <ul class="lista" id="lista1">
+            <li> item 1</li>
+        </ul>
+    </div> 
+
+<script>
+    const datos = [
+        {nombre:"Sunday bloody sunday",artista:"U2", duracion:124},
+        {nombre:"Another one bites the dust",artista:"Queen", duracion:251},
+        {nombre:"Break my heart",artista:"Dua Lipa", duracion:158},
+        {nombre:"Purple rain",artista:"Prince", duracion:158},
+    ]
+    const lista = document.getElementById("lista1")
+    console.log("Lista:")
+    //console.log(lista.innerHTML)
+    //lista.innerHTML="<li> item2 cambiado a mano </li>"
+
+    const traer_btn = document.getElementById("traer");
+    traer_btn.addEventListener("click",traerDatos)
+
+    function traerDatos(p1,p2) {
+        console.log("p1",p1)
+        console.log(lista)
+        datos.map((cancion)=> {
+           
+            const newli = document.createElement('li')
+            newli.innerText=cancion.nombre + "--" + cancion.artista;
+
+            newli.className = "item-lista"
+            const imagen = document.createElement('img')
+            imagen.className = "image-song"
+            imagen.src = "song.jpg"
+            newli.appendChild(imagen)
+            lista.appendChild(newli)
+            
+            //lista.innerHTML += "<li>" + cancion.nombre + "</li>"
+            
+        })
+    }   
+
+
+</script>
+</body>
+
+</html>
