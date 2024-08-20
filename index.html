@@ -53,7 +53,8 @@
     ]
     
     let canciones =[]
-    fetch(`http://masterclass-vercel-4wvbvbzyy-leandros-projects-78ee7a76.vercel.app/canciones`)
+    //fetch(`http://masterclass-vercel-4wvbvbzyy-leandros-projects-78ee7a76.vercel.app/canciones`)
+    fetch(`http://masterclass-vercel.vercel.app/canciones`)
                     .then((response) => response.json())
                     .then((datos2) => {
                         console.log('datos fetch',datos2)
