@@ -82,3 +82,13 @@ img {
     padding: 20px 30px;
     margin: 100px;
 }
+
+.ingreso-datos {
+    background-color: green;
+    margin: 20px 100px;;
+    padding: 10px;
+}
+
+input {
+    color:black;
+}

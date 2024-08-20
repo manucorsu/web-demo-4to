@@ -25,7 +25,7 @@
         <div> div2 </div>
         <div> div3 </div>
     </div> 
-
+    <div>
     <img src="artist.jpg" alt="Logo del álbum">
     <div class="ingreso-datos">
         <label for="album">Album:</label>
@@ -45,71 +45,69 @@
     </div> 
 
 <script>
-    const datos = [
-        {nombre:"Sunday bloody sunday",artista:"U2", duracion:124},
-        {nombre:"Another one bites the dust",artista:"Queen", duracion:251},
-        {nombre:"Break my heart",artista:"Dua Lipa", duracion:158},
-        {nombre:"Purple rain",artista:"Prince", duracion:158},
-    ]
-    
-    let canciones =[]
-    fetch(`http://masterclass-vercel-4wvbvbzyy-leandros-projects-78ee7a76.vercel.app/canciones`)
-                    .then((response) => response.json())
-                    .then((datos2) => {
-                        console.log('datos fetch',datos2)
-                        canciones=datos2;
-                    })
 
-    const lista = document.getElementById("lista1")
-    console.log("Lista:")
+
+    //console.log("Lista:")
     //console.log(lista.innerHTML)
     //lista.innerHTML="<li> item2 cambiado a mano </li>"
 
     const traer_btn = document.getElementById("traer");
-    traer_btn.addEventListener("click",traerDatos)
-
     const guardar_btn = document.getElementById("guardar");
-    guardar_btn.addEventListener("click",guardarDatos);
+    traer_btn.addEventListener("click",traerDatos)
+    guardar_btn.addEventListener("click",guardarDatos)
 
 
     function guardarDatos() {
         const album = document.getElementById("album");
         const duracion = document.getElementById("duracion");
         const nombre = document.getElementById("nombre");
+        const cancion_nueva  = { "album":album.value, "duracion":duracion.value, "nombre":nombre.value}
 
-        const cancion = {"album":album.value,"duracion":duracion.value, "nombre":nombre.value}
-
-        fetch(`http://localhost:8000/canciones`, 
-        {
-            method:'POST',
-            body: JSON.stringify(cancion),
+        fetch(`http://localhost:8000/canciones`,
+            {method:'POST',
+            body: JSON.stringify(cancion_nueva),
             headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
-        .then((response) => response.json())
-        .then((salida)=> {
-            console.log(salida)  
-            nombre.innerHTML=""
-        })
+            }
+        )
+            .then((response) => {
+                console.log("Response es:", response)
+                response.json()})
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
     }
 
-    function traerDatos(p1,p2) {
-        console.log("p1",p1)
-        console.log(lista)
-        canciones.map((cancion)=> {
-           
-            const newli = document.createElement('li')
-            newli.innerText=cancion.nombre + "--" + cancion.artista;
 
-            newli.className = "item-lista"
-            const imagen = document.createElement('img')
-            imagen.className = "image-song"
-            imagen.src = "song.jpg"
-            newli.appendChild(imagen)
-            lista.appendChild(newli)
+    function traerDatos(p1,p2) {
+
+        const datos = [
+        {nombre:"Sunday bloody sunday",artista:"U2", duracion:124},
+        {nombre:"Another one bites the dust",artista:"Queen", duracion:251},
+        {nombre:"Break my heart",artista:"Dua Lipa", duracion:158},
+        {nombre:"Purple rain",artista:"Prince", duracion:158},
+        ]
+
+
+        const lista = document.getElementById("lista1")
+        lista.innerHTML=""
+        fetch(`http://localhost:8000/canciones`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data)
+                        data.map((cancion)=> {
+           
+                        const newli = document.createElement('li')
+                        newli.innerText=cancion.nombre + "--" + cancion.album;
+
+                        newli.className = "item-lista"
+                        const imagen = document.createElement('img')
+                        imagen.className = "image-song"
+                        imagen.src = "song.jpg"
+                        newli.appendChild(imagen)
+                        lista.appendChild(newli)
             
-            //lista.innerHTML += "<li>" + cancion.nombre + "</li>"
-            
-        })
+            })
+        }
+        )
     }   
 
 
