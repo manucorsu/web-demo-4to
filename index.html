@@ -42,7 +42,7 @@
         <li>item 1</li>
       </ul>
     </div>
-    
+
     <script>
       const lista = document.getElementById("lista1");
 
@@ -54,27 +54,31 @@
           fetch(url) //SOY EL DUEÑO DE SPOTICFY.VERCEL.APP ME SIENTO TAN PODEROSO
             .then((response) => response.json())
             .then((datos) => {
-              console.log(`Fetcheé esto: ${datos}`);
               items = datos;
             });
 
-          if (tipo == "canciones") {
-            items.map((item) => {
-              const newli = document.createElement("li");
-              newli.innerText = `${item.nombre} - ${item.artista}`;
-              newli.className = "item-lista";
-              const img = document.createElement("img");
-              img.src = "song.jpg";
-              newli.appendChild(img);
-              lista.appendChild(newli);
-            });
-          }
+          items.forEach((item) => {
+            const newdiv = docuemnt.createElement("div");
+            newdiv.innerText = `${item.nombre} - ${item.artista}`;
+            newdiv.className = "item-lista";
+            const img = document.createElement("img");
+            document.appendChild(img);
+            document.appendChild(newdiv);
+          });
+          // items.map((item) => {
+          //   const newli = document.createElement("li");
+          //   newli.innerText = `${item.nombre} - ${item.artista}`;
+          //   newli.className = "item-lista";
+          //   const img = document.createElement("img");
+          //   img.src = "song.jpg";
+          //   newli.appendChild(img);
+          //   lista.appendChild(newli);
+          // });
         } else {
           console.error(`${tipo} no es un tipo válido para getAll.`);
         }
       }
       //#endregion
-
       const btnTraer = document.getElementById("traer");
       btnTraer.addEventListener("click", getAll("canciones"));
     </script>
