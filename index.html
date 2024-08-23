@@ -42,16 +42,14 @@
         <li>item 1</li>
       </ul>
     </div>
-
+    
     <script>
       const lista = document.getElementById("lista1");
 
       //#region funciones
       function getAll(tipo) {
-        if (
-          /*tipo == "albumes" || tipo == "artistas" ||*/ tipo == "canciones"
-        ) {
-          let url = `https://spoticfy.vercel.app/${tipo}/*`;
+        if (tipo == "canciones") {
+          let url = "https://spoticfy.vercel.app/" + tipo;
           let items = [];
           fetch(url) //SOY EL DUEÑO DE SPOTICFY.VERCEL.APP ME SIENTO TAN PODEROSO
             .then((response) => response.json())
