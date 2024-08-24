@@ -58,6 +58,10 @@
                 const newli = document.createElement("li");
                 if (tipo == "canciones") {
                   newli.innerText = `${item.nombre} - ${item.artista} - ${item.album}`;
+                } else if (tipo == "albumes") {
+                  newli.innerText = `${item.nombre} - ${item.artista}`;
+                } else {
+                  newli.innerText = `${item.nombre}`;
                 }
                 const img = document.createElement("img");
                 img.className = "image-song";
@@ -75,7 +79,10 @@
       const btnTraer = document.getElementById("traer");
       btnTraer.addEventListener("click", () => {
         const tipo = document.getElementById("getWhatSelect").value;
+        lista.innerHTML = "";
+        btnTraer.innerText = "Cargando...";
         getAll(tipo);
+        btnTraer.innerText = "Traer";
       });
     </script>
   </body>
