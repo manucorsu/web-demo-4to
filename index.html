@@ -15,18 +15,9 @@
 
   <body>
     <header>
-      <h1>Spoticfy</h1>
+      <h1 class="titulo">Spoticfy</h1>
     </header>
-    <h1 class>Sin Formato</h1>
-    <h1 class="titulo">con padding</h1>
-    <h1 class="caja">margin 100</h1>
-    <div class="flex-container">
-      <div>div1</div>
-      <div>div2</div>
-      <div>div3</div>
-    </div>
-
-    <img src="artist.jpg" alt="Logo del álbum" />
+    <h2>Ingresar datos</h2>
     <div class="ingreso-datos">
       <label for="album">Album:</label>
       <input type="text" id="album" name="album" /><br /><br />
@@ -34,53 +25,32 @@
       <input type="text" id="duracion" name="duracion" /><br /><br />
       <label for="nombre">Nombre cancion:</label>
       <input type="text" id="nombre" name="nombre" /><br /><br />
-      <button id="guardar">GUARDAR CANCION</button>
-    </div>
-    <div class="flex-container">
-      <button id="traer">TRAER</button>
-      <ul class="lista" id="lista1">
-        <li>item 1</li>
-      </ul>
+      <button id="guardar">Guardar canción</button>
     </div>
 
-    <script>
-      const lista = document.getElementById("lista1");
-
-      //#region funciones
-      function getAll(tipo) {
-        if (tipo == "canciones") {
-          let url = "https://spoticfy.vercel.app/" + tipo;
-          let items = [];
-          fetch(url) //SOY EL DUEÑO DE SPOTICFY.VERCEL.APP ME SIENTO TAN PODEROSO
-            .then((response) => response.json())
-            .then((datos) => {
-              items = datos;
-            });
-
-          items.forEach((item) => {
-            const newdiv = docuemnt.createElement("div");
-            newdiv.innerText = `${item.nombre} - ${item.artista}`;
-            newdiv.className = "item-lista";
-            const img = document.createElement("img");
-            document.appendChild(img);
-            document.appendChild(newdiv);
-          });
-          // items.map((item) => {
-          //   const newli = document.createElement("li");
-          //   newli.innerText = `${item.nombre} - ${item.artista}`;
-          //   newli.className = "item-lista";
-          //   const img = document.createElement("img");
-          //   img.src = "song.jpg";
-          //   newli.appendChild(img);
-          //   lista.appendChild(newli);
-          // });
-        } else {
-          console.error(`${tipo} no es un tipo válido para getAll.`);
-        }
-      }
-      //#endregion
-      const btnTraer = document.getElementById("traer");
-      btnTraer.addEventListener("click", getAll("canciones"));
-    </script>
+    <h2>Traer datos</h2>
+    <div id="traer-datos">
+      <strong>¿Traer qué?</strong>
+      <select id="getWhatSelect">
+        <option value="allCanciones" style="color: black">
+          Todas las canciones
+        </option>
+        <option value="allAlbumes" style="color: black">
+          Todos los álbumes
+        </option>
+        <option value="allArtistas" style="color: black">
+          Todos los artistas
+        </option>
+        <option value="cancionEsp" style="color: black">Una canción</option>
+        <option value="albumEsp" style="color: black">Un álbum</option>
+        <option value="artistaEsp" style="color: black">Un artista</option>
+      </select>
+      <label id="lblSearchTxt" for="inputSearchTxt">¿Cómo se llama?</label>
+      <input type="text" id="inputSearchTxt" name="inputSearchTxt" /> <br />
+      <br />
+      <button id="traer">Traer</button>
+      <ul class="lista" id="lista1"></ul>
+    </div>
+    <script src="./index.js"></script>
   </body>
 </html>
