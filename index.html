@@ -29,61 +29,28 @@
     </div>
 
     <h2>Traer datos</h2>
-    <div class="traer-datos">
+    <div id="traer-datos">
       <strong>¿Traer qué?</strong>
       <select id="getWhatSelect">
-        <option value="canciones" style="color: black">
+        <option value="allCanciones" style="color: black">
           Todas las canciones
         </option>
-        <option value="albumes" style="color: black">Todos los álbumes</option>
-        <option value="artistas" style="color: black">
+        <option value="allAlbumes" style="color: black">
+          Todos los álbumes
+        </option>
+        <option value="allArtistas" style="color: black">
           Todos los artistas
         </option>
+        <option value="cancionEsp" style="color: black">Una canción</option>
+        <option value="albumEsp" style="color: black">Un álbum</option>
+        <option value="artistaEsp" style="color: black">Un artista</option>
       </select>
+      <label id="lblSearchTxt" for="inputSearchTxt">¿Cómo se llama?</label>
+      <input type="text" id="inputSearchTxt" name="inputSearchTxt" /> <br />
+      <br />
       <button id="traer">Traer</button>
       <ul class="lista" id="lista1"></ul>
     </div>
-
-    <script>
-      function getAll(tipo) {
-        if (tipo == "artistas" || tipo == "albumes" || tipo == "canciones") {
-          let datos = [];
-          const url = `http://spoticfy.vercel.app/${tipo}`; //Soy dueño de spoticfy.vercel.app, me siento tan poderoso
-          fetch(url, { method: "GET" })
-            .then((response) => response.json())
-            .then((items) => {
-              console.log("Fetcheé esto:", items);
-              datos = items;
-              datos.forEach((item) => {
-                const newli = document.createElement("li");
-                if (tipo == "canciones") {
-                  newli.innerText = `${item.nombre} - ${item.artista} - ${item.album}`;
-                } else if (tipo == "albumes") {
-                  newli.innerText = `${item.nombre} - ${item.artista}`;
-                } else {
-                  newli.innerText = `${item.nombre}`;
-                }
-                const img = document.createElement("img");
-                img.className = "image-song";
-                img.src = "song.jpg";
-                newli.appendChild(img);
-                lista.appendChild(newli);
-              });
-            });
-        } else {
-          console.error(`${tipo} no es un tipo válido para getAll!`);
-        }
-      }
-
-      const lista = document.getElementById("lista1");
-      const btnTraer = document.getElementById("traer");
-      btnTraer.addEventListener("click", () => {
-        const tipo = document.getElementById("getWhatSelect").value;
-        lista.innerHTML = "";
-        btnTraer.innerText = "Cargando...";
-        getAll(tipo);
-        btnTraer.innerText = "Traer";
-      });
-    </script>
+    <script src="./index.js"></script>
   </body>
 </html>

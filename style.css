@@ -40,7 +40,7 @@ input {
   color: black;
 }
 
-.traer-datos {
+#traer-datos {
   background-color: rgb(7, 195, 107);
   margin: 20px 100px;
   padding: 10px;
