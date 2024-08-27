@@ -19,13 +19,16 @@
     </header>
     <h2>Ingresar datos</h2>
     <div class="ingreso-datos">
-      <label for="album">Album:</label>
-      <input type="text" id="album" name="album" /><br /><br />
-      <label for="duracion">Duracion:</label>
-      <input type="text" id="duracion" name="duracion" /><br /><br />
-      <label for="nombre">Nombre cancion:</label>
-      <input type="text" id="nombre" name="nombre" /><br /><br />
-      <button id="guardar">Guardar canción</button>
+      <strong>¿Crear qué?</strong>
+      <select id="postWhatSelect">
+        <option value="cancion" style="color: black">Una canción</option>
+        <option value="album" style="color: black">Un álbum</option>
+        <option value="artista" style="color: black">Un artista</option>
+      </select>
+      <br /> <br>
+      <form id = "inputForm">
+      </form>
+
     </div>
 
     <h2>Traer datos</h2>
